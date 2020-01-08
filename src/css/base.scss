@@ -1,5 +1,12 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
 
 body {
   background-color: $primary-background;
