@@ -1,4 +1,7 @@
-$primary-background: pink;
+@import 'variables';
+@import 'loginpage';
+@import 'customer-layout';
+@import 'manager-layout';
 
 *,
 *:after,
