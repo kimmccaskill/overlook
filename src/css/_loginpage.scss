@@ -1,4 +1,4 @@
-#login-pg {
+.login-pg {
   background: url('../images/login-bg.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
@@ -8,7 +8,7 @@
   height: 100vh;
 }
 
-#login-welcome {
+.login-welcome {
   font-size: 1.8em;
   font-family: $primary-font;
   color: #fff;
@@ -17,7 +17,7 @@
   text-shadow: 1px 1px 5px black;
 }
 
-#login-title {
+.login-title {
   font-size: 4em;
   font-family: $primary-font;
   color: #fff;
@@ -26,7 +26,7 @@
   text-shadow: 1px 1px 5px black;
 }
 
-#login-form {
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -36,8 +36,8 @@
   margin-top: 3%;
 }
 
-#user-label,
-#pw-label {
+.user-label,
+.pw-label {
   display: flex;
   flex-direction: column;
   margin-bottom: 10%;
@@ -46,16 +46,20 @@
   text-shadow: 1px 1px 5px black;
 }
 
-#user-input,
-#pw-input {
+.user-input,
+.pw-input {
   margin-top: 5%;
   width: 230px;
   height: 28px;
 }
 
-#login-btn {
+.login-btn {
   font-family: $secondary-font;
   width: 30%;
   height: 30px;
   background-color: #fff;
+}
+
+.hide-class {
+  display: none;
 }
