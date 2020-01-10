@@ -27,6 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-bottom: black solid 1px;
 }
 
 .guest-title {
@@ -49,9 +50,7 @@
 
 .bookings-column {
   width: 23%;
-  background-color: skyblue;
-  height: 100vh;
-  // above is temp
+  background-color: blanchedalmond;
 }
 
 .dashboard-bottom {
@@ -86,4 +85,20 @@
   font-family: $secondary-font;
   font-size: .85em;
   width: 100%;
+}
+
+.trip-title {
+  padding: 10%;
+  border-bottom: black solid 1px;
+  margin: 5%;
+  font-family: $primary-font;
+  font-weight: 400;
+}
+
+.booking-card {
+  font-family: $secondary-font;
+  padding: 10%;
+  margin: 5%;
+  background-color: #eedbc0;
+  border-radius: 5px;
 }
