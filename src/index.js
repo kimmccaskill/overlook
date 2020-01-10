@@ -1,6 +1,10 @@
 import $ from 'jquery';
 import domUpdates from './domUpdates.js'
 import './css/base.scss';
+import User from './User'
+import Bookings from './Bookings'
+
+let currentUser;
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -25,3 +29,24 @@ Promise.all([userData, roomData, bookingData])
 const doThing = () => {
   console.log(userData)
 }
+
+const logIn = () => {
+  checkCredentials(getUserId())
+}
+
+const getUserId = () => $(".user-input").val().split('').splice(8, 2).join('');
+
+const checkCredentials = (id) => {
+  if(id <= 50 && $(".pw-input").val() === 'overlook2020') {
+    let userID = getUserId();
+    loadUser(parseInt(userID));
+  }
+}
+
+const loadUser = (id) => {
+  let user = userData.find(user => user.id === id)
+  currentUser = new User(user.id, user.name)
+  console.log(currentUser)
+}
+
+$(".login-btn").click(logIn)
