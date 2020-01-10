@@ -1,6 +1,6 @@
 @import 'variables';
 @import 'loginpage';
-@import 'customer-layout';
+@import 'guest-layout';
 @import 'manager-layout';
 
 *,
@@ -16,6 +16,10 @@ html,
 main {
   width: 100%;
   height: 100%;
+}
+
+select {
+  cursor: pointer;
 }
 
 .hide-class {
