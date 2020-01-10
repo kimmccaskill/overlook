@@ -1,0 +1,89 @@
+.guest-dashboard {
+
+}
+
+.nav-bar {
+  height: 10%;
+  background: #fff;
+  border-bottom: solid 1px #000;
+  font-family: $secondary-font;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  padding: 0px 2% 0px 2%;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav-guest-name {
+  display: inline;
+}
+
+.guest-header {
+  background: url('../images/guest-bg.jpg') no-repeat center center;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.guest-title {
+  font-size: 3em;
+  font-family: $secondary-font;
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 2px 2px 5px black;
+  margin-top: 10%;
+}
+
+.guest-sub-title {
+  font-size: 1em;
+  font-family: $secondary-font;
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 2px 2px 5px black;
+  margin: 2% 0px 2% 0px;
+}
+
+.bookings-column {
+  width: 23%;
+  background-color: skyblue;
+  height: 100vh;
+  // above is temp
+}
+
+.dashboard-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.guest-main-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.avail-form {
+  font-family: $secondary-font;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.date-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10%;
+  font-size: 1.2em;
+  width: 40vh;
+}
+
+.date-input {
+  font-family: $secondary-font;
+  font-size: .85em;
+  width: 100%;
+}
