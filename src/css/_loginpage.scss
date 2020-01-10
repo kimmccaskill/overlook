@@ -13,7 +13,6 @@
   font-family: $primary-font;
   color: #fff;
   font-weight: 400;
-  // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-shadow: 1px 1px 5px black;
 }
 
@@ -22,7 +21,6 @@
   font-family: $primary-font;
   color: #fff;
   font-weight: 400;
-  // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-shadow: 1px 1px 5px black;
 }
 
@@ -30,7 +28,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  background-color: #fff;
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
   padding: 2% 5% 2% 5%;
   margin-top: 3%;
