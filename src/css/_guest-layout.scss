@@ -69,14 +69,15 @@
   font-family: $secondary-font;
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 5%;
 }
 
 .date-label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
   font-size: 1.2em;
   width: 40vh;
 }
@@ -85,6 +86,13 @@
   font-family: $secondary-font;
   font-size: .85em;
   width: 100%;
+}
+
+.check-rates-btn {
+  font-family: $secondary-font;
+  font-size: 1em;
+  width: 40vh;
+  height: 5vh;
 }
 
 .trip-title {
