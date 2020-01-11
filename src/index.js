@@ -64,9 +64,7 @@ const loadUser = (id) => {
 
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
-  console.log("hid login")
-  $(".manager-dashboard").removeClass("hide-class")
-  console.log("reveal manager")
+  $(".manager-dashboard").toggleClass("hide-class")
 }
 
 const loadGuestDashboard = () => {
