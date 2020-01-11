@@ -49,7 +49,7 @@
 }
 
 .bookings-column {
-  width: 23%;
+  width: 25%;
   background-color: blanchedalmond;
 }
 
@@ -96,11 +96,13 @@
 }
 
 .trip-title {
+  font-size: 1.3em;
   padding: 10%;
   border-bottom: black solid 1px;
   margin: 5%;
   font-family: $primary-font;
   font-weight: 400;
+  text-align: center;
 }
 
 .booking-card {
@@ -111,7 +113,7 @@
   border-radius: 5px;
 }
 
-.todays-date {
+.todays-date-container {
   font-family: $secondary-font;
   margin: 1%;
   border-bottom: black solid 1px;
