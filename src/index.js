@@ -5,6 +5,7 @@ import User from './User'
 import Bookings from './Bookings'
 
 let currentUser, bookings, userBookings;
+let todaysDate = new Date()
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -100,5 +101,13 @@ const appendUserBookings = () => {
   })
 }
 
+const loadTotalSpent = () => {
+
+}
+
+const toggleTotalSpent = () => {
+  $(".total-spent-val").toggleClass("hide-class")
+}
 
 $(".login-btn").click(logIn)
+$(".total-spent-btn").click(toggleTotalSpent)
