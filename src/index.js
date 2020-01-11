@@ -5,7 +5,12 @@ import User from './User'
 import Bookings from './Bookings'
 
 let currentUser, bookings, userBookings;
-let todaysDate = new Date()
+let todaysDate = new Date();
+let dd = String(todaysDate.getDate()).padStart(2, '0');
+let mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
+let yyyy = todaysDate.getFullYear();
+
+todaysDate = mm + '/' + dd + '/' + yyyy;
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -17,7 +22,11 @@ let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/r
 
 let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
   .then(response => response.json())
-  .then(data => data.bookings);
+  .then(data => data.bookings)
+  .then(data => {
+    return data.sort(function(a, b){
+    return new Date(b.date) - new Date(a.date);
+  })});
 
 Promise.all([userData, roomData, bookingData])
   .then(data => {
@@ -72,6 +81,8 @@ const loadGuestDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".guest-dashboard").toggleClass("hide-class")
   loadGuestInfo();
+  $(".total-spent-val").text(`$${loadTotalSpent().toFixed(2)}`)
+  loadTodaysDate();
 }
 
 const loadGuestInfo = () => {
@@ -90,9 +101,15 @@ const appendUserBookings = () => {
   userBookings.forEach(booking => {
     roomData.find(room => {
       if(room.number === booking.roomNumber){
+        const changeDateFormat = () => {
+          let newDate = booking.date.split("/");
+          newDate.push(newDate.shift());
+          newDate = newDate.join("/");
+          return newDate;
+        }
         $(".upcoming").after(`
           <div class="booking-card">
-          <p>${booking.date}</p>
+          <p class="card-date">${changeDateFormat()}</p>
           <p>${room.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</p>
           <p>$${room.costPerNight}</p>
           </div>`)
@@ -102,11 +119,23 @@ const appendUserBookings = () => {
 }
 
 const loadTotalSpent = () => {
-
+  return roomData.reduce((acc, room) => {
+    userBookings.forEach(booking => {
+      if(room.number === booking.roomNumber){
+      acc += room.costPerNight
+      }
+    })
+    return acc
+  }, 0)
 }
 
 const toggleTotalSpent = () => {
   $(".total-spent-val").toggleClass("hide-class")
+}
+
+const loadTodaysDate = () => {
+  $(".todays-date").text(todaysDate)
+  $(".date-input").val(todaysDate)
 }
 
 $(".login-btn").click(logIn)
