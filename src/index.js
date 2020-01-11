@@ -52,8 +52,7 @@ const checkCredentials = (id) => {
 
 const checkForManager = (id) => {
   if($(".user-input").val() === 'manager' && $(".pw-input").val() === 'overlook2020') {
-    console.log("manager login")
-    return;
+    loadManagerDashboard();
   }
 }
 
@@ -61,6 +60,13 @@ const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
   currentUser = new User(user.id, user.name)
   console.log(currentUser)
+}
+
+const loadManagerDashboard = () => {
+  $(".login-pg").toggleClass("hide-class")
+  console.log("hid login")
+  $(".manager-dashboard").removeClass("hide-class")
+  console.log("reveal manager")
 }
 
 const loadGuestDashboard = () => {
