@@ -1,0 +1,23 @@
+.manager-form-container {
+  font-family: $secondary-font;
+  position: fixed;
+  top: 10%;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+}
+
+.manager-search-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-input {
+  width: 40vh;
+  height: 5vh;
+  margin: 2% 2% 2% 0;
+  font-size: 1em;
+}

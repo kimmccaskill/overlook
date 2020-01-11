@@ -52,8 +52,7 @@ const checkCredentials = (id) => {
 
 const checkForManager = (id) => {
   if($(".user-input").val() === 'manager' && $(".pw-input").val() === 'overlook2020') {
-    console.log("manager login")
-    return;
+    loadManagerDashboard();
   }
 }
 
@@ -61,6 +60,11 @@ const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
   currentUser = new User(user.id, user.name)
   console.log(currentUser)
+}
+
+const loadManagerDashboard = () => {
+  $(".login-pg").toggleClass("hide-class")
+  $(".manager-dashboard").toggleClass("hide-class")
 }
 
 const loadGuestDashboard = () => {
@@ -91,9 +95,9 @@ const appendUserBookings = () => {
           <p>${room.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</p>
           <p>$${room.costPerNight}</p>
           </div>`)
-        }})
-      }
-  )
+      }}
+    )
+  })
 }
 
 
