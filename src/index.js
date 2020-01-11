@@ -4,7 +4,7 @@ import './css/base.scss';
 import User from './User'
 import Bookings from './Bookings'
 
-let currentUser;
+let currentUser, bookings, userBookings;
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -27,7 +27,7 @@ Promise.all([userData, roomData, bookingData])
   .then(response => doThing());
 
 const doThing = () => {
-  console.log(userData)
+  bookings = new Bookings(roomData, bookingData);
 }
 
 const logIn = () => {
@@ -71,6 +71,30 @@ const loadGuestDashboard = () => {
 
 const loadGuestInfo = () => {
   $(".nav-guest-name").text(currentUser.name)
+  getUserBookings();
+  appendUserBookings();
 }
+
+const getUserBookings = () => {
+  userBookings = bookings.bookings.filter(booking => {
+    return currentUser.id === booking.userID
+  })
+}
+
+const appendUserBookings = () => {
+  userBookings.forEach(booking => {
+    roomData.find(room => {
+      if(room.number === booking.roomNumber){
+        $(".upcoming").after(`
+          <div class="booking-card">
+          <p>${booking.date}</p>
+          <p>${room.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</p>
+          <p>$${room.costPerNight}</p>
+          </div>`)
+        }})
+      }
+  )
+}
+
 
 $(".login-btn").click(logIn)
