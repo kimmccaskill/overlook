@@ -110,3 +110,22 @@
   background-color: #eedbc0;
   border-radius: 5px;
 }
+
+.todays-date {
+  font-family: $secondary-font;
+  margin: 1%;
+  border-bottom: black solid 1px;
+}
+
+.total-spent-btn {
+  font-family: $secondary-font;
+  font-size: 1em;
+  width: 40vh;
+  height: 5vh;
+  margin-top: 10px;
+}
+
+.total-spent-val {
+  font-family: $secondary-font;
+  margin-top: 10px;
+}
