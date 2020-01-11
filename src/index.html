@@ -12,7 +12,7 @@
         <form label="login-form" class="login-form">
           <label class="user-label">
             Username:
-            <input class="user-input"></input>
+            <input value="customer23" class="user-input"></input>
           </label>
           <label class="pw-label">
             Password:
@@ -33,9 +33,9 @@
         <section class="dashboard-bottom">
           <aside class="bookings-column">
             <div class="upcoming-trips-container">
-              <h2 class="trip-title upcoming">Upcoming Trips</h2>
+              <h2 class="trip-title upcoming">Past and Upcoming Trips</h2>
             </div>
-            <div class="past-trips-container">
+            <!-- <div class="past-trips-container">
               <h2 class="trip-title">Past Trips</h2>
               <div class="booking-card">
                 <p>10/25/2019</p>
@@ -47,16 +47,19 @@
                 <p>Junior Suite</p>
                 <p>$403.15</p>
               </div>
-            </div>
+            </div> -->
           </aside>
           <section class="guest-main-section">
+            <p class="todays-date-container">Today is <p class="todays-date">11/2020</p></p>
             <form class="avail-form">
               <label class="date-label">
                 Check-in Date
-                <input class="date-input" type="date"></input>
+                <input class="date-input" type="date" data-date-format="MM DD YYYY"></input>
               </label>
               <button class="check-rates-btn">Check Rates</button>
             </form>
+            <button class="total-spent-btn" type="button">Total Spent</button>
+            <p class="total-spent-val hide-class">Error</p>
           </section>
         </section>
       </section>
