@@ -35,7 +35,8 @@ Promise.all([userData, roomData, bookingData])
     roomData = data[1];
     bookingData = data[2];
   })
-  .then(response => doThing());
+  .then(response => doThing())
+  .catch(error = > console.log("Error returning data"))
 
 const doThing = () => {
   bookings = new Bookings(roomData, bookingData);
@@ -55,10 +56,6 @@ const checkCredentials = (id) => {
     console.log("error handling for improper credentials")
     return;
   }
-  // if($(".user-input").val().length > 10){
-  //   console.log("error handling for improper credentials")
-  //   return;
-  // }
   if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
     let userID = getUserId();
     loadUser(parseInt(userID));
@@ -162,14 +159,35 @@ const loadTodaysDate = () => {
 }
 
 const getRates = () => {
+  loadAvailableRooms();
+  appendAvailTitle();
+  appendAvailableRooms(loadAvailableRooms());
+}
+
+const loadAvailableRooms = () => {
   let selectedDateBookings = bookings.getRoomsBooked($(".date-input").val().split("-").join("/"))
   let availableRooms = bookings.rooms.filter(room => !selectedDateBookings.includes(room.number))
-  appendAvailableRooms(availableRooms);
+  return availableRooms;
+}
+
+const appendAvailTitle = () => {
+  $(".total-spent-val").after(`
+    <div class="filter-wrapper">
+      <label class="search-labels">Filter Rooms:</label>
+      <select class="room-type-dropdown">
+        <option class="test" selected value="all">By Room Type</option>
+        <option class="test" value="single room">Single Room</option>
+        <option class="test" value="suite">Suite</option>
+        <option class="test" value="junior suite">Junior Suite</option>
+        <option class="test" value="residential suite">Residential Suite</option>
+      </select>
+    </div>
+    <h3 class="avail-rooms-title">Available Rooms<h3>
+`)
+  $(".room-type-dropdown").change(filterRooms)
 }
 
 const appendAvailableRooms = (bookings) => {
-  $(".total-spent-val").after(`
-    <h3 class="avail-rooms-title">Available Rooms<h3>`)
   bookings.forEach(booking => {
         $(".avail-rooms-title").after(`
           <div class="available-booking-card">
@@ -185,7 +203,17 @@ const appendAvailableRooms = (bookings) => {
           </div>`)
   })
 }
-// <p class="card-date">${changeDateFormat()}</p>
+
+const filterRooms = () => {
+  $(".available-booking-card").remove();
+  if ($(".room-type-dropdown").val() !== "all") {
+    let filteredRooms = loadAvailableRooms().filter(room => room.roomType === $(".room-type-dropdown").val())
+    appendAvailableRooms(filteredRooms)
+  }
+  if ($(".room-type-dropdown").val() === "all") {
+    appendAvailableRooms(loadAvailableRooms());
+  }
+}
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
