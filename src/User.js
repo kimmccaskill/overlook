@@ -6,9 +6,5 @@ class User {
     this.name = name;
   }
 
-  // getUserBookings(bookings) {
-  //   console.log(currentUser)
-  // }
-
 }
 export default User;
