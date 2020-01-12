@@ -79,11 +79,27 @@ const loadManagerDashboard = () => {
   $(".manager-dashboard").toggleClass("hide-class")
   loadRoomsAvailable();
   console.log(bookings.getRoomsBooked(todaysDateBookingFormat))
+  loadRevenue();
 }
 
 const loadRoomsAvailable = () => {
   $(".rooms-avail").text(`Rooms Available: ${bookings.getRoomsAvailable(todaysDateBookingFormat)}/25`)
 }
+
+const loadRevenue = () => {
+  let bookedRooms = bookings.getRoomsBooked(todaysDateBookingFormat);
+  let revenue = bookedRooms.reduce((acc, bookedRoom) => {
+    roomData.forEach(room => {
+      if(bookedRoom === room.number) {
+        acc += room.costPerNight
+      }
+    })
+    return acc
+  }, 0)
+  $(".revenue").text(`Today's Revenue: $${revenue}`)
+}
+
+
 
 const loadGuestDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
