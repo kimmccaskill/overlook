@@ -11,6 +11,7 @@ let mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
 let yyyy = todaysDate.getFullYear();
 
 todaysDate = mm + '/' + dd + '/' + yyyy;
+let todaysDateBookingFormat = yyyy + '/' + mm + '/' + dd;
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -43,6 +44,7 @@ const doThing = () => {
 const logIn = () => {
   checkForManager();
   checkCredentials(getUserId())
+  loadTodaysDate();
 }
 
 const getUserId = () => $(".user-input").val().split('').splice(8).join('');
@@ -75,6 +77,7 @@ const loadUser = (id) => {
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".manager-dashboard").toggleClass("hide-class")
+  console.log(bookings.getRoomsBooked(todaysDateBookingFormat))
 }
 
 const loadGuestDashboard = () => {
@@ -82,7 +85,6 @@ const loadGuestDashboard = () => {
   $(".guest-dashboard").toggleClass("hide-class")
   loadGuestInfo();
   $(".total-spent-val").text(`$${loadTotalSpent().toFixed(2)}`)
-  loadTodaysDate();
 }
 
 const loadGuestInfo = () => {
