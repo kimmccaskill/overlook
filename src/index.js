@@ -36,7 +36,6 @@ Promise.all([userData, roomData, bookingData])
     bookingData = data[2];
   })
   .then(response => doThing())
-  .catch(error = > console.log("Error returning data"))
 
 const doThing = () => {
   bookings = new Bookings(roomData, bookingData);
@@ -110,6 +109,7 @@ const loadGuestDashboard = () => {
   $(".guest-dashboard").toggleClass("hide-class")
   loadGuestInfo();
   $(".total-spent-val").text(`$${loadTotalSpent().toFixed(2)}`)
+  $(".date-input").attr("min", todaysDateBookingFormat.split("/").join("-"))
 }
 
 const loadGuestInfo = () => {
