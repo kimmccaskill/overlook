@@ -77,7 +77,12 @@ const loadUser = (id) => {
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".manager-dashboard").toggleClass("hide-class")
+  loadRoomsAvailable();
   console.log(bookings.getRoomsBooked(todaysDateBookingFormat))
+}
+
+const loadRoomsAvailable = () => {
+  $(".rooms-avail").text(`Rooms Available: ${bookings.getRoomsAvailable(todaysDateBookingFormat)}/25`)
 }
 
 const loadGuestDashboard = () => {
@@ -139,6 +144,8 @@ const loadTodaysDate = () => {
   $(".todays-date").text(todaysDate)
   $(".date-input").val(todaysDate)
 }
+
+
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
