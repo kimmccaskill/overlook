@@ -11,6 +11,7 @@ let mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
 let yyyy = todaysDate.getFullYear();
 
 todaysDate = mm + '/' + dd + '/' + yyyy;
+let todaysDateBookingFormat = yyyy + '/' + mm + '/' + dd;
 
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -43,6 +44,7 @@ const doThing = () => {
 const logIn = () => {
   checkForManager();
   checkCredentials(getUserId())
+  loadTodaysDate();
 }
 
 const getUserId = () => $(".user-input").val().split('').splice(8).join('');
@@ -53,7 +55,11 @@ const checkCredentials = (id) => {
     console.log("error handling for improper credentials")
     return;
   }
-  if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val() !== "manager" && $(".user-input").val().includes("customer")) {
+  // if($(".user-input").val().length > 10){
+  //   console.log("error handling for improper credentials")
+  //   return;
+  // }
+  if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
     let userID = getUserId();
     loadUser(parseInt(userID));
     loadGuestDashboard();
@@ -68,13 +74,38 @@ const checkForManager = (id) => {
 
 const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
-  currentUser = new User(user.id, user.name)
-  console.log(currentUser)
+  let userBookings = bookings.bookings.filter(booking => id === booking.userID)
+  currentUser = new User(user.id, user.name, userBookings)
 }
 
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".manager-dashboard").toggleClass("hide-class")
+  loadRoomsAvailable();
+  loadRevenue();
+  loadRoomsOccupied();
+}
+
+const loadRoomsAvailable = () => {
+  $(".rooms-avail").text(`Rooms Available: ${bookings.getRoomsAvailable(todaysDateBookingFormat)}/25`)
+}
+
+const loadRevenue = () => {
+  let bookedRooms = bookings.getRoomsBooked(todaysDateBookingFormat);
+  let revenue = bookedRooms.reduce((acc, bookedRoom) => {
+    roomData.forEach(room => {
+      if(bookedRoom === room.number) {
+        acc += room.costPerNight
+      }
+    })
+    return acc
+  }, 0)
+  $(".revenue").text(`Today's Revenue: $${revenue}`)
+}
+
+const loadRoomsOccupied = () => {
+  let percentOccupied = (bookings.getRoomsBooked(todaysDateBookingFormat).length/25) * 100 + "%";
+  $(".rooms-occupied").text(`Rooms Occupied: ${percentOccupied}`)
 }
 
 const loadGuestDashboard = () => {
@@ -82,23 +113,15 @@ const loadGuestDashboard = () => {
   $(".guest-dashboard").toggleClass("hide-class")
   loadGuestInfo();
   $(".total-spent-val").text(`$${loadTotalSpent().toFixed(2)}`)
-  loadTodaysDate();
 }
 
 const loadGuestInfo = () => {
   $(".nav-guest-name").text(currentUser.name)
-  getUserBookings();
   appendUserBookings();
 }
 
-const getUserBookings = () => {
-  userBookings = bookings.bookings.filter(booking => {
-    return currentUser.id === booking.userID
-  })
-}
-
 const appendUserBookings = () => {
-  userBookings.forEach(booking => {
+  currentUser.bookings.forEach(booking => {
     roomData.find(room => {
       if(room.number === booking.roomNumber){
         const changeDateFormat = () => {
@@ -120,7 +143,7 @@ const appendUserBookings = () => {
 
 const loadTotalSpent = () => {
   return roomData.reduce((acc, room) => {
-    userBookings.forEach(booking => {
+    currentUser.bookings.forEach(booking => {
       if(room.number === booking.roomNumber){
       acc += room.costPerNight
       }
@@ -137,6 +160,8 @@ const loadTodaysDate = () => {
   $(".todays-date").text(todaysDate)
   $(".date-input").val(todaysDate)
 }
+
+
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)

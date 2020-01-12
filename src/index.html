@@ -12,7 +12,7 @@
         <form label="login-form" class="login-form">
           <label class="user-label">
             Username:
-            <input value="customer23" class="user-input"></input>
+            <input value="manager" class="user-input"></input>
           </label>
           <label class="pw-label">
             Password:
@@ -35,19 +35,6 @@
             <div class="upcoming-trips-container">
               <h2 class="trip-title upcoming">Past and Upcoming Trips</h2>
             </div>
-            <!-- <div class="past-trips-container">
-              <h2 class="trip-title">Past Trips</h2>
-              <div class="booking-card">
-                <p>10/25/2019</p>
-                <p>Residential Suite</p>
-                <p>$543.65</p>
-              </div>
-              <div class="booking-card">
-                <p>11/19/2019</p>
-                <p>Junior Suite</p>
-                <p>$403.15</p>
-              </div>
-            </div> -->
           </aside>
           <section class="guest-main-section">
             <p class="todays-date-container">Today is <p class="todays-date">11/2020</p></p>
@@ -56,7 +43,7 @@
                 Check-in Date
                 <input class="date-input" type="date" data-date-format="MM DD YYYY"></input>
               </label>
-              <button class="check-rates-btn">Check Rates</button>
+              <button class="check-rates-btn" type="button">Check Rates</button>
             </form>
             <button class="total-spent-btn" type="button">Total Spent</button>
             <p class="total-spent-val hide-class">Error</p>
@@ -67,14 +54,31 @@
         <nav class="nav-bar">
           <span class="guest-welcome">Overlook Resort Manager Portal</span>
         </nav>
-        <section class="manager-form-container">
-          <form>
-            <label class="manager-search-label">
-              Search By Guest Name:
-              <input type="text" name="" value="" class="search-input">
-            </label>
-            <button>Search</button>
-          </form>
+        <div class-"nav-space"></div>
+        <section class="manager-bottom">
+          <div class="manager-form-container">
+            <p class="todays-date-container">Today is <p class="todays-date">11/2020</p>
+            </p>
+            <form class="manager-form">
+              <label class="manager-search-label">
+                Search By Guest Name:
+                <input type="text" name="" value="" class="search-input">
+              </label>
+              <button class="manager-search-btn" type="button">Search</button>
+            </form>
+          </div>
+          <section class="hotel-stats-container">
+            <h3>Today's Stats:</h3>
+            <div class="rooms-avail-box stat-card">
+              <p class="rooms-avail">Rooms available: 4/25</p>
+            </div>
+            <div class="revenue-box stat-card">
+              <p class="revenue">Todays Revenue: $239</p>
+            </div>
+            <div class="rooms-occupied-box stat-card">
+              <p class="rooms-occupied">Rooms occupied: 80%</p>
+            </div>
+          </section>
         </section>
       </section>
     </main>

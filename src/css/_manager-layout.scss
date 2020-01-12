@@ -1,12 +1,26 @@
+.manager-dashboard {
+  height: 100%;
+  width: 100%;
+}
+
+.manager-bottom {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  grid-template-rows: auto;
+  padding: 10% 3% 5% 3%;
+}
+
 .manager-form-container {
   font-family: $secondary-font;
-  position: fixed;
-  top: 10%;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding-top: 10%;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2%;
+}
+
+.nav-space {
+  height: 10%;
+  background-color: blue;
 }
 
 .manager-search-label {
@@ -19,4 +33,31 @@
   height: 5vh;
   margin: 2% 2% 2% 0;
   font-size: 1em;
+  border-radius: 2px;
+}
+
+.manager-search-btn {
+  width: 50%;
+  height: 30px;
+  border-radius: 2px;
+}
+
+.manager-form {
+  margin-top: 20%;
+}
+
+.hotel-stats-container {
+  padding: 3%;
+  font-family: $secondary-font;
+}
+
+.stat-card {
+  font-family: $secondary-font;
+  box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.35);
+  width: 100%;
+  height: 30%;
+  background: lightgrey;
+  margin: 20px 0 20px 0;
+  padding: 3%;
+  border-radius: 2px;
 }
