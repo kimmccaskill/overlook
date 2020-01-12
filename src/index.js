@@ -100,7 +100,7 @@ const loadRevenue = () => {
     })
     return acc
   }, 0)
-  $(".revenue").text(`Today's Revenue: $${revenue}`)
+  $(".revenue").text(`Today's Revenue: $${revenue.toFixed(2)}`)
 }
 
 const loadRoomsOccupied = () => {
@@ -161,7 +161,32 @@ const loadTodaysDate = () => {
   $(".date-input").val(todaysDate)
 }
 
+const getRates = () => {
+  let selectedDateBookings = bookings.getRoomsBooked($(".date-input").val().split("-").join("/"))
+  let availableRooms = bookings.rooms.filter(room => !selectedDateBookings.includes(room.number))
+  appendAvailableRooms(availableRooms);
+}
 
+const appendAvailableRooms = (bookings) => {
+  $(".total-spent-val").after(`
+    <h3 class="avail-rooms-title">Available Rooms<h3>`)
+  bookings.forEach(booking => {
+        $(".avail-rooms-title").after(`
+          <div class="available-booking-card">
+          <div>
+            <h4>${booking.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h4>
+            <p>This ${booking.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')} features ${booking.bedSize} size beds(${booking.numBeds}) at our luxurious Overlook Resort. The structure of our resort ensures that each and every room guarantees a beach view with East-facing windows and mountain views with West-facing windows.</p>
+          </div>
+          <div class="priceAndBook">
+            <h3>$${booking.costPerNight}</h3>
+            <p>(per night)</p>
+            <button type="button" class="book-btn">Book</button>
+          </div>
+          </div>`)
+  })
+}
+// <p class="card-date">${changeDateFormat()}</p>
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
+$(".check-rates-btn").click(getRates)
