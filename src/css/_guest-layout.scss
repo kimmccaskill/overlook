@@ -144,7 +144,7 @@
 
 .available-booking-card {
   font-family: $secondary-font;
-  width: 100%;
+  width: 95%;
   padding: 5%;
   border-bottom: black solid 1px;
   display: flex;
@@ -166,4 +166,8 @@
     font-size: .7em;
     text-align: center;
   }
+}
+
+.filter-wrapper {
+  margin: 3%;
 }
