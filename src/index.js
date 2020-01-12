@@ -55,7 +55,11 @@ const checkCredentials = (id) => {
     console.log("error handling for improper credentials")
     return;
   }
-  if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val() !== "manager" && $(".user-input").val().includes("customer")) {
+  // if($(".user-input").val().length > 10){
+  //   console.log("error handling for improper credentials")
+  //   return;
+  // }
+  if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
     let userID = getUserId();
     loadUser(parseInt(userID));
     loadGuestDashboard();
@@ -70,16 +74,16 @@ const checkForManager = (id) => {
 
 const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
-  currentUser = new User(user.id, user.name)
-  console.log(currentUser)
+  let userBookings = bookings.bookings.filter(booking => id === booking.userID)
+  currentUser = new User(user.id, user.name, userBookings)
 }
 
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".manager-dashboard").toggleClass("hide-class")
   loadRoomsAvailable();
-  console.log(bookings.getRoomsBooked(todaysDateBookingFormat))
   loadRevenue();
+  loadRoomsOccupied();
 }
 
 const loadRoomsAvailable = () => {
@@ -99,7 +103,10 @@ const loadRevenue = () => {
   $(".revenue").text(`Today's Revenue: $${revenue}`)
 }
 
-
+const loadRoomsOccupied = () => {
+  let percentOccupied = (bookings.getRoomsBooked(todaysDateBookingFormat).length/25) * 100 + "%";
+  $(".rooms-occupied").text(`Rooms Occupied: ${percentOccupied}`)
+}
 
 const loadGuestDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
@@ -110,18 +117,11 @@ const loadGuestDashboard = () => {
 
 const loadGuestInfo = () => {
   $(".nav-guest-name").text(currentUser.name)
-  getUserBookings();
   appendUserBookings();
 }
 
-const getUserBookings = () => {
-  userBookings = bookings.bookings.filter(booking => {
-    return currentUser.id === booking.userID
-  })
-}
-
 const appendUserBookings = () => {
-  userBookings.forEach(booking => {
+  currentUser.bookings.forEach(booking => {
     roomData.find(room => {
       if(room.number === booking.roomNumber){
         const changeDateFormat = () => {
@@ -143,7 +143,7 @@ const appendUserBookings = () => {
 
 const loadTotalSpent = () => {
   return roomData.reduce((acc, room) => {
-    userBookings.forEach(booking => {
+    currentUser.bookings.forEach(booking => {
       if(room.number === booking.roomNumber){
       acc += room.costPerNight
       }
