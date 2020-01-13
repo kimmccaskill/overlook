@@ -116,7 +116,6 @@
   background-color: #eedbc0;
   border-radius: 2px;
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
-
 }
 
 .todays-date-container {
@@ -141,4 +140,39 @@
 .total-spent-val {
   font-family: $secondary-font;
   margin-top: 10px;
+}
+
+.available-booking-card {
+  font-family: $secondary-font;
+  width: 95%;
+  padding: 5%;
+  border-bottom: black solid 1px;
+  display: flex;
+  flex-direction: row;
+}
+
+.book-btn {
+  width: 100%;
+  height: 25px;
+  background-color: #4579ab;
+  color: #fff;
+  font-size: 1em;
+}
+
+.priceAndBook {
+  width: 25%;
+  padding: 5%;
+  p {
+    font-size: .7em;
+    text-align: center;
+  }
+}
+
+.filter-wrapper {
+  margin: 3%;
+  font-family: $secondary-font;
+}
+
+.avail-rooms-title {
+  font-family: $secondary-font;
 }
