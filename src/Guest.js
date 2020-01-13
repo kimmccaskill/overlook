@@ -1,7 +1,6 @@
 import Bookings from "./Bookings"
 import User from "./User"
 import $ from 'jquery';
-import {returnUser, returnDate} from './index.js'
 
 class Guest extends User{
   constructor(id, name, bookings, rooms) {

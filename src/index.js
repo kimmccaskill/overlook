@@ -51,13 +51,13 @@ const logIn = () => {
 
 const getUserId = () => $(".user-input").val().split('').splice(8).join('');
 
-export const returnUser = () => {
-  return currentUser;
-}
-
-export const returnDate = () => {
-  return selectedDate;
-}
+// export const returnUser = () => {
+//   return currentUser;
+// }
+//
+// export const returnDate = () => {
+//   return selectedDate;
+// }
 
 const checkCredentials = (id) => {
   if((!id || id > 50) && $(".user-input").val() !== "manager") {
