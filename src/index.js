@@ -1,8 +1,10 @@
 import $ from 'jquery';
-import domUpdates from './domUpdates.js'
+import domUpdates from './domUpdates.js';
 import './css/base.scss';
-import User from './User'
-import Bookings from './Bookings'
+import User from './User';
+import Guest from './Guest';
+import Manager from './Manager'
+import Bookings from './Bookings';
 
 let currentUser, bookings, userBookings, selectedDate;
 let todaysDate = new Date();
@@ -76,12 +78,12 @@ const checkForManager = (id) => {
   }
 }
 
-const loadUser = (id) => {
+export const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
   let userBookings = bookings.bookings.filter(booking => id === booking.userID)
   let rooms = bookings.rooms
-  // console.log(bookings.rooms)
-  currentUser = new User(user.id, user.name, userBookings, bookings.rooms)
+  currentUser = new Guest(user.id, user.name, userBookings, bookings.rooms)
+  console.log(userBookings)
 }
 
 const loadManagerDashboard = () => {
