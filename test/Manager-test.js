@@ -3,7 +3,7 @@ const expect = chai.expect;
 
 import Manager from "../src/Manager"
 
-describe('See if the tests are running', function() {
+describe('Manager Class', function() {
   it('should return true', function() {
     expect(true).to.equal(true);
   });
