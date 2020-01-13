@@ -51,13 +51,13 @@ const logIn = () => {
 
 const getUserId = () => $(".user-input").val().split('').splice(8).join('');
 
-// export const returnUser = () => {
-//   return currentUser;
-// }
-//
-// export const returnDate = () => {
-//   return selectedDate;
-// }
+export const returnUser = () => {
+  return currentUser;
+}
+
+export const returnDate = () => {
+  return selectedDate;
+}
 
 const checkCredentials = (id) => {
   if((!id || id > 50) && $(".user-input").val() !== "manager") {
@@ -78,12 +78,12 @@ const checkForManager = (id) => {
   }
 }
 
-const loadUser = (id) => {
+export const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
   let userBookings = bookings.bookings.filter(booking => id === booking.userID)
   let rooms = bookings.rooms
-  // console.log(bookings.rooms)
   currentUser = new Guest(user.id, user.name, userBookings, bookings.rooms)
+  console.log(userBookings)
 }
 
 const loadManagerDashboard = () => {
