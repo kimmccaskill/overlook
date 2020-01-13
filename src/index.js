@@ -60,16 +60,19 @@ export const returnDate = () => {
 }
 
 const checkCredentials = (id) => {
-  if((!id || id > 50) && $(".user-input").val() !== "manager") {
-    // Error handling for long username needed
-    console.log("error handling for improper credentials")
-    return;
+  if((!id || id > 50) && $(".user-input").val() !== "manager" || $(".pw-input").val() !== 'overlook2020') {
+    showError();
   }
   if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
     let userID = getUserId();
     loadUser(parseInt(userID));
     loadGuestDashboard();
   }
+}
+
+const showError = () => {
+  $(".invalid-creds").toggleClass("hide-class")
+  setTimeout(function(){$(".invalid-creds").toggleClass("hide-class")}, 5000)
 }
 
 const checkForManager = (id) => {
