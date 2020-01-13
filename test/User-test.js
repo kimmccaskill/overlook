@@ -8,13 +8,11 @@ let user;
 
 describe('User Class', function() {
   beforeEach(() => {
-    // chai.spy.on(User, ['returnDate','returnUser'], () => {})
     user = new User()
-    chai.spy.on(user, ['bookRoom'], () => {const sendBooking = () => {}; sendBooking()})
+    chai.spy.on(user, ['bookRoom'], () => {})
   });
-  it.skip('should check that sendBooking is called', function() {
+  it('should check that bookRoom is called', function() {
     user.bookRoom();
-    console.log(user.bookRoom.sendBooking)
-    expect(user.bookRoom().sendBooking()).toHaveBeenCalled();
+    expect(user.bookRoom).to.have.been.called();
   });
 });
