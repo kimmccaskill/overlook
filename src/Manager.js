@@ -7,7 +7,7 @@ class Manager extends User{
     super();
   }
 
-  deleteRoom() {
+  deleteBooking() {
 
   }
 }
