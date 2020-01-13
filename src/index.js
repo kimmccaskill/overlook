@@ -171,23 +171,26 @@ const loadAvailableRooms = () => {
 }
 
 const appendAvailTitle = () => {
-  $(".total-spent-val").after(`
-    <div class="filter-wrapper">
-      <label class="search-labels">Filter Rooms:</label>
-      <select class="room-type-dropdown">
-        <option class="test" selected value="all">By Room Type</option>
-        <option class="test" value="single room">Single Room</option>
-        <option class="test" value="suite">Suite</option>
-        <option class="test" value="junior suite">Junior Suite</option>
-        <option class="test" value="residential suite">Residential Suite</option>
-      </select>
-    </div>
-    <h3 class="avail-rooms-title">Available Rooms<h3>
-`)
-  $(".room-type-dropdown").change(filterRooms)
+  if (!$(".filter-wrapper").length) {
+    $(".total-spent-val").after(`
+      <div class="filter-wrapper">
+        <label class="search-labels">Filter Rooms:</label>
+        <select class="room-type-dropdown">
+          <option class="test" selected value="all">By Room Type</option>
+          <option class="test" value="single room">Single Room</option>
+          <option class="test" value="suite">Suite</option>
+          <option class="test" value="junior suite">Junior Suite</option>
+          <option class="test" value="residential suite">Residential Suite</option>
+        </select>
+      </div>
+      <h3 class="avail-rooms-title">Available Rooms<h3>
+  `)
+    $(".room-type-dropdown").change(filterRooms)
+  }
 }
 
 const appendAvailableRooms = (bookings) => {
+  $(".available-booking-card").remove();
   bookings.forEach(booking => {
         $(".avail-rooms-title").after(`
           <div class="available-booking-card">
@@ -202,6 +205,7 @@ const appendAvailableRooms = (bookings) => {
           </div>
           </div>`)
   })
+  displayError(bookings);
 }
 
 const filterRooms = () => {
@@ -212,6 +216,12 @@ const filterRooms = () => {
   }
   if ($(".room-type-dropdown").val() === "all") {
     appendAvailableRooms(loadAvailableRooms());
+  }
+}
+
+const displayError = (array) => {
+  if (!array.length) {
+    console.log("fierce apology")
   }
 }
 
