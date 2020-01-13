@@ -220,6 +220,8 @@ const appendAvailableRooms = (bookings) => {
   $(".book-btn").click(currentUser.bookRoom)
 }
 
+
+
 const filterRooms = () => {
   clearCardsAndError()
   if ($(".room-type-dropdown").val() !== "all") {
