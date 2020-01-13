@@ -1,6 +1,6 @@
 import Bookings from "./Bookings"
 import $ from 'jquery';
-// import {returnUser, returnDate} from './index.js'
+import {returnUser, returnDate} from './index.js'
 
 
 class User {
