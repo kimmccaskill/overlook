@@ -190,7 +190,7 @@ const appendAvailTitle = () => {
 }
 
 const appendAvailableRooms = (bookings) => {
-  $(".available-booking-card").remove();
+  clearCardsAndError()
   bookings.forEach(booking => {
         $(".avail-rooms-title").after(`
           <div class="available-booking-card">
@@ -209,7 +209,7 @@ const appendAvailableRooms = (bookings) => {
 }
 
 const filterRooms = () => {
-  $(".available-booking-card").remove();
+  clearCardsAndError()
   if ($(".room-type-dropdown").val() !== "all") {
     let filteredRooms = loadAvailableRooms().filter(room => room.roomType === $(".room-type-dropdown").val())
     appendAvailableRooms(filteredRooms)
@@ -219,9 +219,15 @@ const filterRooms = () => {
   }
 }
 
+const clearCardsAndError = () => {
+  $(".available-booking-card").remove();
+  $(".error-msg").remove();
+}
+
 const displayError = (array) => {
-  if (!array.length) {
-    console.log("fierce apology")
+  if (!array.length && !$(".error-msg").length) {
+    $(".avail-rooms-title").after(`
+      <p class="error-msg">There are no rooms available for this date and room type.</p>  <p class="error-msg">Please adjust your search criteria and try again!</p>`)
   }
 }
 
