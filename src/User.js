@@ -4,11 +4,7 @@ import {returnUser, returnDate} from './index.js'
 
 
 class User {
-  constructor(id, name, bookings, rooms) {
-    this.id = id;
-    this.name = name;
-    this.bookings = bookings;
-    this.rooms = rooms;
+  constructor() {
   }
 
   bookRoom(event) {
@@ -41,7 +37,6 @@ class User {
       return data;
     };
     sendBooking(roomToBook);
-    
   }
 }
 
