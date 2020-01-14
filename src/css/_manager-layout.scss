@@ -92,10 +92,22 @@
 }
 
 .guest-bookings-container {
-  width: 30%;
+  width: 33%;
 }
 
 .guest-booking-card {
-  margin: 0 5% 5% 5%;
+  padding: 0 5% 5% 5%;
+  margin: 0 10% 5% 10%;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.manager-side {
   text-align: center;
+}
+
+.delete-btn {
+  width: 20%;
 }
