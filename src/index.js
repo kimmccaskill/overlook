@@ -6,7 +6,8 @@ import Guest from './Guest';
 import Manager from './Manager'
 import Bookings from './Bookings';
 
-let currentUser, bookings, userBookings, selectedDate, guestNames;
+
+let currentUser, manager, bookings, userBookings, selectedDate, guestNames;
 let todaysDate = new Date();
 let dd = String(todaysDate.getDate()).padStart(2, '0');
 let mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
@@ -96,6 +97,8 @@ const loadManagerDashboard = () => {
   loadRevenue();
   loadRoomsOccupied();
   loadGuestNames();
+  manager = new Manager()
+  console.log(manager)
 }
 
 const loadGuestNames = () =>{
@@ -227,7 +230,9 @@ const appendAvailableRooms = (bookings) => {
           </div>`)
   })
   displayError(bookings);
-  $(".book-btn").click(currentUser.bookRoom)
+  $(".book-btn").click(function(){
+    currentUser.bookRoom(selectedDate, currentUser, roomData, event.target)
+  })
 }
 
 
@@ -261,7 +266,7 @@ const searchByGuest = () => {
   let guestBookings = bookings.bookings.filter(booking => booking.userID === guestId)
   loadUser(guestId)
   appendSearchedBookings(currentUser.bookings)
-  $(".total-spent-val").text(`$${loadTotalSpent(currentUser).toFixed(2)}`)
+  $(".total-spent-val").text(`Total Spent: $${loadTotalSpent(currentUser).toFixed(2)}`)
 }
 
 const appendSearchedBookings = (bookings) => {
@@ -270,18 +275,21 @@ const appendSearchedBookings = (bookings) => {
     console.log("do thing")
     $(".guest-bookings-container").append(`
       <div class="guest-booking-card">
-        <p>Date: ${booking.date}<p>
-        <p>Room Number: ${booking.roomNumber}<p>
+        <div>
+          <p>Date: ${booking.date}<p>
+          <p>Room #${booking.roomNumber}<p>
+        </div>
+        <button id="${booking.id}" class="delete-btn">Delete</button>
       <div>`)
   })
-
+  $(".delete-btn").click(function(){manager.deleteBooking(bookingData, event.target)})
 }
 
 // autocomplete func below
 const autocomplete = (inp) => {
-  var currentFocus;
-  inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
+  let currentFocus;
+  $(".search-input").on("input", function(e) {
+      let a, b, i, val = this.value;
       closeAllLists();
       if (!val) { return false;}
       currentFocus = -1;
@@ -302,9 +310,9 @@ const autocomplete = (inp) => {
           a.appendChild(b);
         }
       }
-  });
+  })
   $(".search-input").change(function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
+      let x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
         currentFocus++;
@@ -327,14 +335,14 @@ const autocomplete = (inp) => {
     x[currentFocus].classList.add("autocomplete-active");
   }
   const removeActive = (x) => {
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
   const closeAllLists = (elmnt) => {
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
+    let x = document.getElementsByClassName("autocomplete-items");
+    for (let i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != $(".search-input")) {
       x[i].parentNode.removeChild(x[i]);
     }
   }
@@ -345,6 +353,7 @@ $(document).click(function (e) {
 }
 
 autocomplete(document.querySelector(".search-input"))
+
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
 $(".check-rates-btn").click(getRates)
