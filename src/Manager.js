@@ -7,8 +7,19 @@ class Manager extends User{
     super();
   }
 
-  deleteBooking() {
-
+  deleteBooking(bookings, target) {
+    let bookingId = $(target).attr("id")
+    let roomToDelete = bookings.find(booking => booking.id === bookingId)
+    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: `${roomToDelete.id}`
+      })
+    })
+    $(target).closest(".guest-booking-card").remove()
   }
 }
 

@@ -7,12 +7,11 @@ class User {
   constructor() {
   }
 
-  bookRoom(event) {
-    let roomNum = event.currentTarget.id;
-    let roomToBook = returnUser().rooms.find(room => room.number === parseInt(roomNum))
-    let date = returnDate();
+  bookRoom(date, user, rooms, target) {
+    let roomNum = $(this).attr('id');
+    let roomToBook = rooms.find(room => room.number === roomNum)
     roomToBook = {
-      "userID": returnUser().id,
+      "userID": user.id,
       "date": date,
       "roomNumber": roomToBook.number
     }
@@ -37,6 +36,8 @@ class User {
       return data;
     };
     sendBooking(roomToBook);
+    $(target).closest(".available-booking-card").remove()
+    alert("Booking confirmed! Please refresh the page to see changes in your Trips")
   }
 }
 
