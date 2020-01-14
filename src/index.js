@@ -128,7 +128,7 @@ const loadGuestDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".guest-dashboard").toggleClass("hide-class")
   loadGuestInfo();
-  $(".total-spent-val").text(`$${loadTotalSpent().toFixed(2)}`)
+  $(".total-spent-val").text(`$${loadTotalSpent(currentUser).toFixed(2)}`)
   $(".date-input").attr("min", todaysDateBookingFormat.split("/").join("-"))
 }
 
@@ -158,9 +158,9 @@ const appendUserBookings = () => {
   })
 }
 
-const loadTotalSpent = () => {
+const loadTotalSpent = (user) => {
   return roomData.reduce((acc, room) => {
-    currentUser.bookings.forEach(booking => {
+    user.bookings.forEach(booking => {
       if(room.number === booking.roomNumber){
       acc += room.costPerNight
       }
@@ -255,6 +255,29 @@ const displayError = (array) => {
   }
 }
 
+const searchByGuest = () => {
+  let guest = $(".search-input").val()
+  let guestId = userData.find(user => user.name === guest).id
+  let guestBookings = bookings.bookings.filter(booking => booking.userID === guestId)
+  appendSearchedBookings(guestBookings)
+  loadUser(guestId)
+  console.log(currentUser)
+}
+
+const appendSearchedBookings = (bookings) => {
+  $(".guest-booking-card").remove()
+
+  return bookings.forEach(booking => {
+    console.log(booking)
+    $(".guest-bookings-container").append(`
+      <div class="guest-booking-card">
+        <p>Date: ${booking.date}<p>
+        <p>Room Number: ${booking.roomNumber}<p>
+      <div>`)
+  })
+
+}
+
 // autocomplete func below
 const autocomplete = (inp) => {
   var currentFocus;
@@ -326,6 +349,6 @@ autocomplete(document.querySelector(".search-input"))
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
 $(".check-rates-btn").click(getRates)
-
+$(".manager-search-btn").click(searchByGuest)
 
 export default 'index.js'
