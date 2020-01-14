@@ -54,7 +54,7 @@
 
 .stat-card {
   font-family: $secondary-font;
-  box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.35);
+  // box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.35);
   width: 100%;
   height: 30%;
   background: lightgrey;
@@ -89,4 +89,13 @@
 .autocomplete-active {
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+
+.guest-bookings-container {
+  width: 30%;
+}
+
+.guest-booking-card {
+  margin: 0 5% 5% 5%;
+  text-align: center;
 }
