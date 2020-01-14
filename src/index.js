@@ -259,16 +259,15 @@ const searchByGuest = () => {
   let guest = $(".search-input").val()
   let guestId = userData.find(user => user.name === guest).id
   let guestBookings = bookings.bookings.filter(booking => booking.userID === guestId)
-  appendSearchedBookings(guestBookings)
   loadUser(guestId)
-  console.log(currentUser)
+  appendSearchedBookings(currentUser.bookings)
+  $(".total-spent-val").text(`$${loadTotalSpent(currentUser).toFixed(2)}`)
 }
 
 const appendSearchedBookings = (bookings) => {
   $(".guest-booking-card").remove()
-
-  return bookings.forEach(booking => {
-    console.log(booking)
+  bookings.forEach(booking => {
+    console.log("do thing")
     $(".guest-bookings-container").append(`
       <div class="guest-booking-card">
         <p>Date: ${booking.date}<p>
