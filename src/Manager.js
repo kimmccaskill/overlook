@@ -25,6 +25,7 @@ class Manager extends User {
       })
     })
     $(target).closest('.guest-booking-card').remove()
+    alert("Booking deleted!")
   }
 }
 
