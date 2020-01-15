@@ -25,7 +25,7 @@
 
 ## Setup
 
-Fork this repository. 
+Fork then clone down this repository. 
 
 Then install the library dependencies. Run:
 
