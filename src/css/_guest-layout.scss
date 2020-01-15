@@ -1,10 +1,6 @@
-.guest-dashboard {
-
-}
-
 .nav-bar {
   height: 10%;
-  background: #fff;
+  background: $light-color;
   border-bottom: solid 1px #000;
   font-family: $secondary-font;
   font-size: 1.2em;
@@ -22,10 +18,9 @@
 }
 
 .guest-header {
+  @include flex-column;
   background: url('../images/guest-bg.jpg') no-repeat center center;
   height: 60%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-bottom: black solid 1px;
@@ -35,16 +30,16 @@
 .guest-title {
   font-size: 3em;
   font-family: $secondary-font;
-  color: #fff;
+  color: $light-color;
   font-weight: 400;
   text-shadow: 2px 2px 5px black;
   margin-top: 10%;
 }
 
 .guest-sub-title {
-  font-size: 1em;
+  font-size: $standard-size;
   font-family: $secondary-font;
-  color: #fff;
+  color: $light-color;
   font-weight: 400;
   text-shadow: 2px 2px 5px black;
   margin: 2% 0px 2% 0px;
@@ -56,31 +51,27 @@
 }
 
 .dashboard-bottom {
-  display: flex;
-  flex-direction: row;
+  @include flex-row;
 }
 
 .guest-main-section {
+  @include flex-column;
   width: 100%;
-  display: flex;
   align-items: center;
-  flex-direction: column;
   padding-right: 20%;
   padding-top: 3%;
 }
 
 .avail-form {
+  @include flex-column;
   font-family: $secondary-font;
   width: 100%;
-  display: flex;
   align-items: center;
-  flex-direction: column;
   padding-top: 5%;
 }
 
 .date-label {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   margin-bottom: 3%;
   font-size: 1.2em;
   width: 40vh;
@@ -94,7 +85,7 @@
 
 .check-rates-btn {
   font-family: $secondary-font;
-  font-size: 1em;
+  font-size: $standard-size;
   width: 40vh;
   height: 5vh;
 }
@@ -131,7 +122,7 @@
 
 .total-spent-btn {
   font-family: $secondary-font;
-  font-size: 1em;
+  font-size: $standard-size;
   width: 40vh;
   height: 5vh;
   margin-top: 10px;
@@ -143,20 +134,19 @@
 }
 
 .available-booking-card {
+  @include flex-row;
   font-family: $secondary-font;
   width: 95%;
   padding: 5%;
   border-bottom: black solid 1px;
-  display: flex;
-  flex-direction: row;
 }
 
 .book-btn {
   width: 100%;
   height: 25px;
   background-color: #4579ab;
-  color: #fff;
-  font-size: 1em;
+  color: $light-color;
+  font-size: $standard-size;
 }
 
 .priceAndBook {

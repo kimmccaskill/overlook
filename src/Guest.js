@@ -1,8 +1,6 @@
-import Bookings from "./Bookings"
-import User from "./User"
-import $ from 'jquery';
+import User from './User'
 
-class Guest extends User{
+class Guest extends User {
   constructor(id, name, bookings, rooms) {
     super();
     this.id = id;

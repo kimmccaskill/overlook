@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Overlook</title>
-    <link href="https://fonts.googleapis.com/css?family=Exo:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <main>
-      <section class="login-pg">
-        <h2 class="login-welcome">Welcome to Paradise at the</h2>
-        <h1 class="login-title">Overlook Resort</h1>
-        <form label="login-form" class="login-form">
-          <label class="user-label">
-            Username:
-            <input value="manager" class="user-input"></input>
-          </label>
-          <label class="pw-label">
-            Password:
-            <input value="overlook2020" type="password" class="pw-input"></input>
-          </label>
-          <button type="button" class="login-btn">Log In</button>
-        </form>
-        <p class="invalid-creds hide-class">Username or password is invalid.</p>
-      </section>
-      <section class="guest-dashboard hide-class">
-        <nav class="nav-bar">
-          <span class="guest-welcome">Welcome, <p class="nav-guest-name">Kim</p>.</span>
-        </nav>
-        <header class="guest-header">
-          <h1 class="guest-title">OVERLOOK RESORT</h1>
-          <div class="guest-sub-title">_________________________</div>
-          <h3 class="guest-sub-title">BESPOKE EXPERIENCE TAILORED TO YOUR DREAMS</h3>
-        </header>
-        <section class="dashboard-bottom">
-          <aside class="bookings-column">
-            <div class="upcoming-trips-container">
-              <h2 class="trip-title upcoming">Past and Upcoming Trips</h2>
-            </div>
-          </aside>
-          <section class="guest-main-section">
-            <p class="todays-date-container">Today is <p class="todays-date">a mystery</p></p>
-            <form class="avail-form">
-              <label class="date-label">
-                Check-in Date
-                <input class="date-input" type="date" data-date-format="MM DD YYYY"></input>
-              </label>
-              <button class="check-rates-btn" type="button">Check Rates</button>
-            </form>
-            <button class="total-spent-btn" type="button">Total Spent</button>
-            <p class="total-spent-val hide-class">Error</p>
-          </section>
+
+<head>
+  <title>Overlook</title>
+  <link href="https://fonts.googleapis.com/css?family=Exo:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main>
+    <section class="login-pg">
+      <h2 class="login-welcome">Welcome to Paradise at the</h2>
+      <h1 class="login-title">Overlook Resort</h1>
+      <form label="login-form" class="login-form">
+        <label class="user-label">
+          Username:
+          <input value="manager" class="user-input"></input>
+        </label>
+        <label class="pw-label">
+          Password:
+          <input value="overlook2020" type="password" class="pw-input"></input>
+        </label>
+        <button type="button" class="login-btn">Log In</button>
+      </form>
+      <p class="invalid-creds hide-class">Username or password is invalid.</p>
+    </section>
+    <section class="guest-dashboard hide-class">
+      <nav class="nav-bar">
+        <span class="guest-welcome">Welcome, <p class="nav-guest-name">Kim</p>.</span>
+        <button class="logout-btn">Log Out</button>
+      </nav>
+      <header class="guest-header">
+        <h1 class="guest-title">OVERLOOK RESORT</h1>
+        <div class="guest-sub-title">_________________________</div>
+        <h3 class="guest-sub-title">BESPOKE EXPERIENCE TAILORED TO YOUR DREAMS</h3>
+      </header>
+      <section class="dashboard-bottom">
+        <aside class="bookings-column">
+          <div class="upcoming-trips-container">
+            <h2 class="trip-title upcoming">Past and Upcoming Trips</h2>
+          </div>
+        </aside>
+        <section class="guest-main-section">
+          <p class="todays-date-container">Today is <p class="todays-date">a mystery</p>
+          </p>
+          <form class="avail-form">
+            <label class="date-label">
+              Check-in Date
+              <input class="date-input" type="date" data-date-format="MM DD YYYY"></input>
+            </label>
+            <button class="check-rates-btn" type="button">Check Rates</button>
+          </form>
+          <button class="total-spent-btn" type="button">Total Spent</button>
+          <p class="total-spent-val append-title hide-class">Error</p>
         </section>
       </section>
-      <section class="manager-dashboard hide-class">
-        <nav class="nav-bar">
-          <span class="guest-welcome">Overlook Resort Manager Portal</span>
-        </nav>
-        <div class-"nav-space"></div>
-        <section class="manager-bottom">
-          <div class="manager-form-container">
-            <p class="todays-date-container">Today is <p class="todays-date">a mystery</p>
-            </p>
-            <form autocomplete="off" class="manager-form">
-              <label class="manager-search-label">
-                Search By Guest Name:
-                <input type="text" name="" value="" class="search-input">
-              </label>
-              <button class="manager-search-btn" type="button">Search</button>
-            </form>
+    </section>
+    <section class="manager-dashboard hide-class">
+      <nav class="nav-bar">
+        <span class="guest-welcome">Overlook Resort Manager Portal</span>
+        <button class="logout-btn">Log Out</button>
+      </nav>
+      <div class-"nav-space"></div>
+      <section class="manager-bottom">
+        <div class="manager-form-container">
+          <p class="todays-date-container">Today is <p class="todays-date">a mystery</p>
+          </p>
+          <form autocomplete="off" class="manager-form">
+            <label class="manager-search-label">
+              Search By Guest Name:
+              <input type="text" name="" value="" class="search-input">
+            </label>
+            <button class="manager-search-btn" type="button">Search</button>
+          </form>
+        </div>
+        <section class="hotel-stats-container">
+          <h3>Today's Stats:</h3>
+          <div class="rooms-avail-box stat-card">
+            <p class="rooms-avail">Rooms available: 4/25</p>
           </div>
-          <section class="hotel-stats-container">
-            <h3>Today's Stats:</h3>
-            <div class="rooms-avail-box stat-card">
-              <p class="rooms-avail">Rooms available: 4/25</p>
-            </div>
-            <div class="revenue-box stat-card">
-              <p class="revenue">Todays Revenue: $239</p>
-            </div>
-            <div class="rooms-occupied-box stat-card">
-              <p class="rooms-occupied">Rooms occupied: 80%</p>
-            </div>
-          </section>
-          <div class="total-spent-val manager-side"><div>
+          <div class="revenue-box stat-card">
+            <p class="revenue">Todays Revenue: $239</p>
+          </div>
+          <div class="rooms-occupied-box stat-card">
+            <p class="rooms-occupied">Rooms occupied: 80%</p>
+          </div>
+          <form class="avail-form manager-form hide-class">
+            <label class="date-label">
+              Check-in Date
+              <input class="date-input date-input-manager" type="date" data-date-format="MM DD YYYY"></input>
+            </label>
+            <button class="check-rates-manager-btn append-title" type="button">Check Rates</button>
+          </form>
         </section>
         <section class="guest-bookings-container">
         </section>
       </section>
-    </main>
-  </body>
+    </section>
+  </main>
+</body>
+
 </html>
