@@ -8,8 +8,8 @@ class User {
   }
 
   bookRoom(date, user, rooms, target) {
-    let roomNum = $(this).attr('id');
-    let roomToBook = rooms.find(room => room.number === roomNum)
+    let roomNum = $(target).attr('id');
+    let roomToBook = rooms.find(room => room.number === roomNum || room.number === parseInt(roomNum))
     roomToBook = {
       "userID": user.id,
       "date": date,
