@@ -65,4 +65,4 @@ npm test
 
 The test results will output to the terminal.
 
-(http://g.recordit.co/4ahj4oUQ6Z.gif)
+![user gif](http://g.recordit.co/4ahj4oUQ6Z.gif)
