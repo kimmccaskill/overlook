@@ -1,13 +1,10 @@
 import $ from 'jquery';
-import domUpdates from './domUpdates.js';
 import './css/base.scss';
-import User from './User';
 import Guest from './Guest';
 import Manager from './Manager'
 import Bookings from './Bookings';
 
-
-let currentUser, manager, bookings, userBookings, selectedDate, guestNames;
+let currentUser, manager, bookings, selectedDate, guestNames;
 let todaysDate = new Date();
 let dd = String(todaysDate.getDate()).padStart(2, '0');
 let mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
@@ -28,9 +25,10 @@ export let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/19
   .then(response => response.json())
   .then(data => data.bookings)
   .then(data => {
-    return data.sort(function(a, b){
-    return new Date(b.date) - new Date(a.date);
-  })});
+    return data.sort(function(a, b) {
+      return new Date(b.date) - new Date(a.date);
+    })
+  });
 
 Promise.all([userData, roomData, bookingData])
   .then(data => {
@@ -40,7 +38,7 @@ Promise.all([userData, roomData, bookingData])
   })
   .then(response => startHotel())
 
-const startHotel= () => {
+const startHotel = () => {
   bookings = new Bookings(roomData, bookingData);
 }
 
@@ -61,10 +59,10 @@ export const returnDate = () => {
 }
 
 const checkCredentials = (id) => {
-  if((!id || id > 50) && $(".user-input").val() !== "manager" || $(".pw-input").val() !== 'overlook2020') {
+  if ((!id || id > 50) && $(".user-input").val() !== "manager" || $(".pw-input").val() !== 'overlook2020') {
     showError();
   }
-  if(id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
+  if (id <= 50 && $(".pw-input").val() === 'overlook2020' && $(".user-input").val().includes("customer")) {
     let userID = getUserId();
     loadUser(parseInt(userID));
     loadGuestDashboard();
@@ -73,11 +71,13 @@ const checkCredentials = (id) => {
 
 const showError = () => {
   $(".invalid-creds").toggleClass("hide-class")
-  setTimeout(function(){$(".invalid-creds").toggleClass("hide-class")}, 5000)
+  setTimeout(function() {
+    $(".invalid-creds").toggleClass("hide-class")
+  }, 5000)
 }
 
-const checkForManager = (id) => {
-  if($(".user-input").val() === 'manager' && $(".pw-input").val() === 'overlook2020') {
+const checkForManager = () => {
+  if ($(".user-input").val() === 'manager' && $(".pw-input").val() === 'overlook2020') {
     loadManagerDashboard();
   }
 }
@@ -85,7 +85,6 @@ const checkForManager = (id) => {
 export const loadUser = (id) => {
   let user = userData.find(user => user.id === id)
   let userBookings = bookings.bookings.filter(booking => id === booking.userID)
-  let rooms = bookings.rooms
   currentUser = new Guest(user.id, user.name, userBookings, bookings.rooms)
 }
 
@@ -100,7 +99,7 @@ const loadManagerDashboard = () => {
   $(".date-input").attr("min", todaysDateBookingFormat.split("/").join("-"))
 }
 
-const loadGuestNames = (array) =>{
+const loadGuestNames = (array) => {
   guestNames = array.map(user => user.name);
 }
 
@@ -112,7 +111,7 @@ const loadRevenue = (date) => {
   let bookedRooms = bookings.getRoomsBooked(date);
   let revenue = bookedRooms.reduce((acc, bookedRoom) => {
     roomData.forEach(room => {
-      if(bookedRoom === room.number) {
+      if (bookedRoom === room.number) {
         acc += room.costPerNight
       }
     })
@@ -122,7 +121,7 @@ const loadRevenue = (date) => {
 }
 
 const loadRoomsOccupied = () => {
-  let percentOccupied = (bookings.getRoomsBooked(todaysDateBookingFormat).length/25) * 100 + "%";
+  let percentOccupied = (bookings.getRoomsBooked(todaysDateBookingFormat).length / 25) * 100 + "%";
   $(".rooms-occupied").text(`Rooms Occupied: ${percentOccupied}`)
 }
 
@@ -142,7 +141,7 @@ const loadGuestInfo = () => {
 const appendUserBookings = () => {
   currentUser.bookings.forEach(booking => {
     roomData.find(room => {
-      if(room.number === booking.roomNumber){
+      if (room.number === booking.roomNumber) {
         const changeDateFormat = () => {
           let newDate = booking.date.split("/");
           newDate.push(newDate.shift());
@@ -155,16 +154,16 @@ const appendUserBookings = () => {
           <p>${room.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</p>
           <p>$${room.costPerNight}</p>
           </div>`)
-      }}
-    )
+      }
+    })
   })
 }
 
 const loadTotalSpent = (user) => {
   return roomData.reduce((acc, room) => {
     user.bookings.forEach(booking => {
-      if(room.number === booking.roomNumber){
-      acc += room.costPerNight
+      if (room.number === booking.roomNumber) {
+        acc += room.costPerNight
       }
     })
     return acc
@@ -215,7 +214,7 @@ const appendAvailTitle = () => {
 const appendAvailableRooms = (bookings) => {
   clearCardsAndError()
   bookings.forEach(booking => {
-        $(".avail-rooms-title").after(`
+    $(".avail-rooms-title").after(`
           <div class="available-booking-card" data-room="${booking.number}">
             <div>
               <h4>${booking.roomType.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h4>
@@ -229,7 +228,9 @@ const appendAvailableRooms = (bookings) => {
           </div>`)
   })
   displayError(bookings);
-  $(".book-btn").click(function(){currentUser.bookRoom(selectedDate, currentUser, roomData, event.target)})
+  $(".book-btn").click(function() {
+    currentUser.bookRoom(selectedDate, currentUser, roomData, event.target)
+  })
 }
 
 
@@ -260,12 +261,11 @@ const displayError = (array) => {
 const searchByGuest = () => {
   let guest = $(".search-input").val()
   let guestId = userData.find(user => user.name === guest).id
-  let guestBookings = bookings.bookings.filter(booking => booking.userID === guestId)
   loadUser(guestId)
   appendSearchedBookings(currentUser.bookings)
   $(".total-spent-val").text(`Total Spent: $${loadTotalSpent(currentUser).toFixed(2)}`)
   $(".avail-form").toggleClass("hide-class")
-  }
+}
 
 const appendSearchedBookings = (bookings) => {
   $(".guest-booking-card").remove()
@@ -279,50 +279,54 @@ const appendSearchedBookings = (bookings) => {
         <button id="${booking.id}" class="delete-btn">Delete</button>
       <div>`)
   })
-  $(".delete-btn").click(function(){manager.deleteBooking(bookingData, event.target)})
+  $(".delete-btn").click(function() {
+    manager.deleteBooking(bookingData, event.target)
+  })
 }
 
 // autocomplete func below
 const autocomplete = (inp) => {
   let currentFocus;
-  $(".search-input").on("input", function(e) {
-      let a, b, i, val = this.value;
-      closeAllLists();
-      if (!val) { return false;}
-      currentFocus = -1;
-      a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
-      this.parentNode.appendChild(a);
-      for (i = 0; i < guestNames.length; i++) {
-        if (guestNames[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          b = document.createElement("DIV");
-          b.innerHTML = "<strong>" + guestNames[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += guestNames[i].substr(val.length);
-          b.innerHTML += "<input type='hidden' value='" + guestNames[i] + "'>";
-              b.addEventListener("click", function(e) {
-              inp.value = this.getElementsByTagName("input")[0].value;
-              closeAllLists();
-          });
-          a.appendChild(b);
-        }
+  $(".search-input").on("input", function() {
+    let a, b, i, val = this.value;
+    closeAllLists();
+    if (!val) {
+      return false;
+    }
+    currentFocus = -1;
+    a = document.createElement("DIV");
+    a.setAttribute("id", this.id + "autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    this.parentNode.appendChild(a);
+    for (i = 0; i < guestNames.length; i++) {
+      if (guestNames[i].substr(0, val.length).toUpperCase() === val.toUpperCase()) {
+        b = document.createElement("DIV");
+        b.innerHTML = "<strong>" + guestNames[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += guestNames[i].substr(val.length);
+        b.innerHTML += "<input type='hidden' value='" + guestNames[i] + "'>";
+        b.addEventListener("click", function() {
+          inp.value = this.getElementsByTagName("input")[0].value;
+          closeAllLists();
+        });
+        a.appendChild(b);
       }
+    }
   })
   $(".search-input").change(function(e) {
-      let x = document.getElementById(this.id + "autocomplete-list");
-      if (x) x = x.getElementsByTagName("div");
-      if (e.keyCode == 40) {
-        currentFocus++;
-        addActive(x);
-      } else if (e.keyCode == 38) {
-        currentFocus--;
-        addActive(x);
-      } else if (e.keyCode == 13) {
-        e.preventDefault();
-        if (currentFocus > -1) {
-          if (x) x[currentFocus].click();
-        }
+    let x = document.getElementById(this.id + "autocomplete-list");
+    if (x) x = x.getElementsByTagName("div");
+    if (e.keyCode === 40) {
+      currentFocus++;
+      addActive(x);
+    } else if (e.keyCode === 38) {
+      currentFocus--;
+      addActive(x);
+    } else if (e.keyCode === 13) {
+      e.preventDefault();
+      if (currentFocus > -1) {
+        if (x) x[currentFocus].click();
       }
+    }
   })
   const addActive = (x) => {
     if (!x) return false;
@@ -339,20 +343,24 @@ const autocomplete = (inp) => {
   const closeAllLists = (elmnt) => {
     let x = document.getElementsByClassName("autocomplete-items");
     for (let i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != $(".search-input")) {
-      x[i].parentNode.removeChild(x[i]);
+      if (elmnt !== x[i] && elmnt !== $(".search-input")) {
+        x[i].parentNode.removeChild(x[i]);
+      }
     }
   }
-}
-$(document).click(function (e) {
+  $(document).click(function(e) {
     closeAllLists(e.target);
-})
+  })
 }
 
 autocomplete(document.querySelector(".search-input"))
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
-$(".check-rates-btn").click(function(){getRates(".date-input")})
-$(".check-rates-manager-btn").click(function(){getRates(".date-input-manager")})
+$(".check-rates-btn").click(function() {
+  getRates(".date-input")
+})
+$(".check-rates-manager-btn").click(function() {
+  getRates(".date-input-manager")
+})
 $(".manager-search-btn").click(searchByGuest)

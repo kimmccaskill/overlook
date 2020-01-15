@@ -2,8 +2,7 @@ import Bookings from "./Bookings"
 import $ from 'jquery';
 
 class User {
-  constructor() {
-  }
+  constructor() {}
 
   bookRoom(date, user, rooms, target) {
     let roomNum = $(target).attr('id');
