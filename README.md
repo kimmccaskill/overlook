@@ -65,4 +65,12 @@ npm test
 
 The test results will output to the terminal.
 
-![user gif](http://g.recordit.co/4ahj4oUQ6Z.gif)
+### Login Page
+<img width="1435" alt="Screen Shot 2020-01-14 at 9 45 28 PM" src="https://user-images.githubusercontent.com/54483332/72405744-2f908f80-3717-11ea-86c6-1ceaac43caf7.png">
+
+### Customer Dashboard
+<img width="1435" alt="Screen Shot 2020-01-14 at 9 45 55 PM" src="https://user-images.githubusercontent.com/54483332/72405768-40410580-3717-11ea-895c-a82687afb643.png">
+<img width="1435" alt="Screen Shot 2020-01-14 at 9 46 15 PM" src="https://user-images.githubusercontent.com/54483332/72405785-4c2cc780-3717-11ea-89fc-dad634d7cf27.png">
+
+### Manager Dashboard
+<img width="1435" alt="Screen Shot 2020-01-14 at 9 48 12 PM" src="https://user-images.githubusercontent.com/54483332/72405858-9150f980-3717-11ea-89a9-1088908630d4.png">
