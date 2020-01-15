@@ -35,6 +35,17 @@ p {
   margin-top: 3px;
 }
 
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout-btn {
+  font-style: $secondary-font;
+  border: none;
+  font-size: .8em;
+}
+
 .hide-class {
   display: none;
 }

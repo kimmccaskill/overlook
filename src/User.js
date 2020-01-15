@@ -1,4 +1,4 @@
-import Bookings from "./Bookings"
+import Bookings from './Bookings'
 import $ from 'jquery';
 
 class User {
@@ -8,9 +8,9 @@ class User {
     let roomNum = $(target).attr('id');
     let roomToBook = rooms.find(room => room.number === roomNum || room.number === parseInt(roomNum))
     roomToBook = {
-      "userID": user.id,
-      "date": date,
-      "roomNumber": roomToBook.number
+      'userID': user.id,
+      'date': date,
+      'roomNumber': roomToBook.number
     }
     const sendBooking = async (booking) => {
       const options = {
@@ -33,8 +33,8 @@ class User {
       return data;
     };
     sendBooking(roomToBook);
-    $(target).closest(".available-booking-card").remove()
-    alert("Booking confirmed! Please refresh the page to see changes in your Trips")
+    $(target).closest('.available-booking-card').remove()
+    alert('Booking confirmed! Please refresh the page to see changes in your Trips')
   }
 }
 

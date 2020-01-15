@@ -1,4 +1,4 @@
-import User from "./User"
+import User from './User'
 
 class Guest extends User {
   constructor(id, name, bookings, rooms) {

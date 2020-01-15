@@ -1,4 +1,4 @@
-import User from "./User"
+import User from './User'
 import $ from 'jquery';
 
 class Manager extends User {
@@ -7,7 +7,7 @@ class Manager extends User {
   }
 
   deleteBooking(bookings, target) {
-    let bookingId = $(target).attr("id")
+    let bookingId = $(target).attr('id')
     let roomToDelete;
     if ($.isNumeric(bookingId)) {
       roomToDelete = parseInt(bookings.find(booking => booking.id === parseInt(bookingId)).id)
@@ -16,15 +16,15 @@ class Manager extends User {
     }
 
     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         id: roomToDelete
       })
     })
-    $(target).closest(".guest-booking-card").remove()
+    $(target).closest('.guest-booking-card').remove()
   }
 }
 
