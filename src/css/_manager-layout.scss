@@ -4,19 +4,14 @@
 }
 
 .manager-bottom {
-  // display: grid;
-  // grid-template-columns: 3fr 7fr;
-  // grid-template-rows: auto;
-  display: flex;
-  flex-direction: row;
+  @include flex-row;
   padding: 10% 3% 5% 3%;
 }
 
 .manager-form-container {
   font-family: $secondary-font;
-  display: flex;
+  @include flex-column;
   align-items: center;
-  flex-direction: column;
   padding-top: 2%;
   width: 33%;
   height: 100%;
@@ -28,8 +23,7 @@
 }
 
 .manager-search-label {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   position: relative;
 }
 
@@ -73,7 +67,6 @@
   border-bottom: none;
   border-top: none;
   z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
   left: 0;
   right: 0;
@@ -82,7 +75,7 @@
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: $light-color;
   border-bottom: 1px solid #d4d4d4;
 }
 
@@ -92,7 +85,7 @@
 
 .autocomplete-active {
   background-color: DodgerBlue !important;
-  color: #ffffff;
+  color: $light-color;
 }
 
 .guest-bookings-container {
@@ -101,11 +94,10 @@
 }
 
 .guest-booking-card {
+  @include flex-row;
   padding: 0 5% 5% 5%;
   margin: 0 10% 5% 10%;
   border-bottom: 1px solid black;
-  display: flex;
-  flex-direction: row;
   justify-content: space-around;
 }
 
