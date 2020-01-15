@@ -98,7 +98,7 @@ const loadManagerDashboard = () => {
   loadRoomsOccupied();
   loadGuestNames();
   manager = new Manager()
-  console.log(manager)
+  $(".date-input").attr("min", todaysDateBookingFormat.split("/").join("-"))
 }
 
 const loadGuestNames = () =>{
@@ -181,22 +181,24 @@ const loadTodaysDate = () => {
   $(".date-input").val(todaysDate)
 }
 
-const getRates = () => {
-  loadAvailableRooms();
+const getRates = (dateinp) => {
+  selectedDate = $(dateinp).val().split("-").join("/");
+  console.log(selectedDate)
+  loadAvailableRooms()
   appendAvailTitle();
   appendAvailableRooms(loadAvailableRooms());
 }
 
 const loadAvailableRooms = () => {
-  selectedDate = $(".date-input").val().split("-").join("/");
   let selectedDateBookings = bookings.getRoomsBooked(selectedDate)
   let availableRooms = bookings.rooms.filter(room => !selectedDateBookings.includes(room.number))
   return availableRooms;
 }
 
 const appendAvailTitle = () => {
+  console.log("hello")
   if (!$(".filter-wrapper").length) {
-    $(".total-spent-val").after(`
+    $(".append-title").after(`
       <div class="filter-wrapper">
         <label class="search-labels">Filter Rooms:</label>
         <select class="room-type-dropdown">
@@ -356,7 +358,8 @@ autocomplete(document.querySelector(".search-input"))
 
 $(".login-btn").click(logIn)
 $(".total-spent-btn").click(toggleTotalSpent)
-$(".check-rates-btn").click(getRates)
+$(".check-rates-btn").click(function(){getRates(".date-input")})
+$(".check-rates-manager-btn").click(function(){getRates(".date-input-manager")})
 $(".manager-search-btn").click(searchByGuest)
 
 export default 'index.js'

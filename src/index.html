@@ -47,7 +47,7 @@
               <button class="check-rates-btn" type="button">Check Rates</button>
             </form>
             <button class="total-spent-btn" type="button">Total Spent</button>
-            <p class="total-spent-val hide-class">Error</p>
+            <p class="total-spent-val append-title hide-class">Error</p>
           </section>
         </section>
       </section>
@@ -79,11 +79,18 @@
             <div class="rooms-occupied-box stat-card">
               <p class="rooms-occupied">Rooms occupied: 80%</p>
             </div>
+            <form class="avail-form manager-form">
+              <label class="date-label">
+                Check-in Date
+                <input class="date-input date-input-manager" type="date" data-date-format="MM DD YYYY"></input>
+              </label>
+              <button class="check-rates-manager-btn append-title" type="button">Check Rates</button>
+            </form>
           </section>
-          <div class="total-spent-val manager-side"><div>
+          <section class="guest-bookings-container">
+          </section>
         </section>
-        <section class="guest-bookings-container">
-        </section>
+
       </section>
     </main>
   </body>
