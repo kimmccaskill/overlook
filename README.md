@@ -1,4 +1,4 @@
-# Overlook Resort
+# Overlook Resort - Hotel Management Application
 
 ## Solo project by Kim McCaskill during Module 2 at Turing School of Software and Design
 
@@ -65,3 +65,4 @@ npm test
 
 The test results will output to the terminal.
 
+(http://g.recordit.co/4ahj4oUQ6Z.gif)
