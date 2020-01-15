@@ -301,9 +301,9 @@ const autocomplete = (inp) => {
     for (i = 0; i < guestNames.length; i++) {
       if (guestNames[i].substr(0, val.length).toUpperCase() === val.toUpperCase()) {
         b = document.createElement('DIV');
-        b.innerHTML = '<strong>' + guestNames[i].substr(0, val.length) + '</strong>';
+        b.innerHTML = "<strong>" + guestNames[i].substr(0, val.length) + "</strong>";
         b.innerHTML += guestNames[i].substr(val.length);
-        b.innerHTML += '<input type='hidden' value='' + guestNames[i] + ''>';
+        b.innerHTML += "<input type='hidden' value='" + guestNames[i] + "'>";
         b.addEventListener('click', function() {
           inp.value = this.getElementsByTagName('input')[0].value;
           closeAllLists();
