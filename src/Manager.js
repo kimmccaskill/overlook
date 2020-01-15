@@ -25,15 +25,6 @@ class Manager extends User{
         id: roomToDelete
       })
     })
-    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        id: `${roomToDelete.id}`
-      })
-    })
     $(target).closest(".guest-booking-card").remove()
   }
 }
