@@ -38,9 +38,9 @@ Promise.all([userData, roomData, bookingData])
     roomData = data[1];
     bookingData = data[2];
   })
-  .then(response => doThing())
+  .then(response => startHotel())
 
-const doThing = () => {
+const startHotel= () => {
   bookings = new Bookings(roomData, bookingData);
 }
 
@@ -269,7 +269,8 @@ const searchByGuest = () => {
   loadUser(guestId)
   appendSearchedBookings(currentUser.bookings)
   $(".total-spent-val").text(`Total Spent: $${loadTotalSpent(currentUser).toFixed(2)}`)
-}
+  $(".avail-form").toggleClass("hide-class")
+  }
 
 const appendSearchedBookings = (bookings) => {
   $(".guest-booking-card").remove()
