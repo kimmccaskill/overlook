@@ -87,30 +87,29 @@ export const loadUser = (id) => {
   let userBookings = bookings.bookings.filter(booking => id === booking.userID)
   let rooms = bookings.rooms
   currentUser = new Guest(user.id, user.name, userBookings, bookings.rooms)
-  console.log(userBookings)
 }
 
 const loadManagerDashboard = () => {
   $(".login-pg").toggleClass("hide-class")
   $(".manager-dashboard").toggleClass("hide-class")
   loadRoomsAvailable();
-  loadRevenue();
+  loadRevenue(todaysDateBookingFormat);
   loadRoomsOccupied();
-  loadGuestNames();
+  loadGuestNames(userData);
   manager = new Manager()
   $(".date-input").attr("min", todaysDateBookingFormat.split("/").join("-"))
 }
 
-const loadGuestNames = () =>{
-  guestNames = userData.map(user => user.name);
+const loadGuestNames = (array) =>{
+  guestNames = array.map(user => user.name);
 }
 
 const loadRoomsAvailable = () => {
   $(".rooms-avail").text(`Rooms Available: ${bookings.getRoomsAvailable(todaysDateBookingFormat)}/25`)
 }
 
-const loadRevenue = () => {
-  let bookedRooms = bookings.getRoomsBooked(todaysDateBookingFormat);
+const loadRevenue = (date) => {
+  let bookedRooms = bookings.getRoomsBooked(date);
   let revenue = bookedRooms.reduce((acc, bookedRoom) => {
     roomData.forEach(room => {
       if(bookedRoom === room.number) {
@@ -183,7 +182,6 @@ const loadTodaysDate = () => {
 
 const getRates = (dateinp) => {
   selectedDate = $(dateinp).val().split("-").join("/");
-  console.log(selectedDate)
   loadAvailableRooms()
   appendAvailTitle();
   appendAvailableRooms(loadAvailableRooms());
@@ -196,7 +194,6 @@ const loadAvailableRooms = () => {
 }
 
 const appendAvailTitle = () => {
-  console.log("hello")
   if (!$(".filter-wrapper").length) {
     $(".append-title").after(`
       <div class="filter-wrapper">
@@ -232,9 +229,7 @@ const appendAvailableRooms = (bookings) => {
           </div>`)
   })
   displayError(bookings);
-  $(".book-btn").click(function(){
-    currentUser.bookRoom(selectedDate, currentUser, roomData, event.target)
-  })
+  $(".book-btn").click(function(){currentUser.bookRoom(selectedDate, currentUser, roomData, event.target)})
 }
 
 
@@ -275,7 +270,6 @@ const searchByGuest = () => {
 const appendSearchedBookings = (bookings) => {
   $(".guest-booking-card").remove()
   bookings.forEach(booking => {
-    console.log("do thing")
     $(".guest-bookings-container").append(`
       <div class="guest-booking-card">
         <div>
@@ -362,5 +356,3 @@ $(".total-spent-btn").click(toggleTotalSpent)
 $(".check-rates-btn").click(function(){getRates(".date-input")})
 $(".check-rates-manager-btn").click(function(){getRates(".date-input-manager")})
 $(".manager-search-btn").click(searchByGuest)
-
-export default 'index.js'
