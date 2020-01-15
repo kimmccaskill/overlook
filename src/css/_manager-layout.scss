@@ -4,9 +4,11 @@
 }
 
 .manager-bottom {
-  display: grid;
-  grid-template-columns: 3fr 7fr;
-  grid-template-rows: auto;
+  // display: grid;
+  // grid-template-columns: 3fr 7fr;
+  // grid-template-rows: auto;
+  display: flex;
+  flex-direction: row;
   padding: 10% 3% 5% 3%;
 }
 
@@ -16,6 +18,8 @@
   align-items: center;
   flex-direction: column;
   padding-top: 2%;
+  width: 33%;
+  height: 100%;
 }
 
 .nav-space {
@@ -30,7 +34,7 @@
 }
 
 .search-input {
-  width: 40vh;
+  width: 100%;
   height: 5vh;
   margin: 2% 2% 2% 0;
   font-size: 1em;
@@ -50,13 +54,13 @@
 .hotel-stats-container {
   padding: 3%;
   font-family: $secondary-font;
+  width: 66%;
 }
 
 .stat-card {
   font-family: $secondary-font;
-  // box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.35);
   width: 100%;
-  height: 30%;
+  height: 50px;;
   background: lightgrey;
   margin: 20px 0 20px 0;
   padding: 3%;
@@ -93,6 +97,7 @@
 
 .guest-bookings-container {
   width: 33%;
+  display: inline-block;
 }
 
 .guest-booking-card {
@@ -110,4 +115,17 @@
 
 .delete-btn {
   width: 20%;
+}
+
+.manager-form {
+  width: 66%;
+  display: inline-block;
+  margin-top: 0px;
+}
+
+.check-rates-manager-btn {
+  font-family: $secondary-font;
+  font-size: 1em;
+  width: 40vh;
+  height: 5vh;
 }
